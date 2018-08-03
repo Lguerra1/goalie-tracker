@@ -1,14 +1,18 @@
-let quotes = ['Hard work beats talent, when talent doesnt work hard', 'The harder I work, the luckier I get']
+let goals = ['Connect the front end to the back end']
 
 
 module.exports = {
     read: (req, res) => {
-        res.status(200).send(quotes)
+        res.status(200).send(goals)
     },
 
     create: (req, res) => {        
-        quotes.push(req.body.quote)
-        res.status(200).send(quotes)
+        goals.push(req.body.goal)
+        res.status(200).send(goals)
+    },
+
+    delete: (req, res) => {
+        res.status(200).send(goals)
     }
 
     

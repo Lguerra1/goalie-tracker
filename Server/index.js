@@ -6,8 +6,9 @@ const app = express();
 
 app.use(bodyParser.json())
 
-app.get('/api/quotes', gc.read)
-app.post('/api/quotes', gc.create)
+app.get('/api/goals', gc.read)
+app.post('/api/goals', gc.create)
+app.delete('/api/goals', gc.delete)
 
 const port = 3005;
 app.listen( port, () => {console.log(`Server Listening on Port ${port}`) } )

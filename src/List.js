@@ -1,50 +1,59 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import axios from 'axios';
 
+
 export default class List extends Component {
-    constructor(){
+    constructor() {
         super()
         this.state = {
-            input: '',
-            goals: []
+            goals: [],
+            input: ''
 
         }
     }
 
-    handleChange(value){
+    handleChange(value) {
         this.setState({
             input: value
         })
     }
 
-    submitGoal(){
-        this.setState({
-            goals: [...this.state.goals, this.state.input],
-            input: ''
+    submitGoal() {
+        axios.post('/api/goals', {goal: this.state.input })
+        .then(response => this.setState({ goals: response.data}
+        ))
+    }
+
+    componentDidMount(){
+        axios.get('/api/goals')
+        .then(response => {
+            this.setState({ goals: response.data })
         })
     }
 
-    render(){
-        let setGoals = this.state.goals.map( (element, index) => {
-            return(
-                <h2 key={index}>{element}</h2>
+    render() {
+        let setGoals = this.state.goals.map((goal, index) => {
+            return (
+                <h2 key={index}>{goal}</h2>
             )
         })
-        return(
+        return (
             <div>
 
                 <input value={this.state.input}
-                placeholder="Whats your goal?" 
-                onChange={(e) => this.handleChange(e.target.value)}/>
-                <p>{this.state.input}</p>
+                    placeholder="Whats your goal?"
+                    onChange={(e) => this.handleChange(e.target.value)} />
 
-                <button onClick={() => this.submitGoal()}>Submit</button>
-                {setGoals}
+
+                <button className="button1" onClick={() => this.submitGoal()}>Submit</button>
+                <button className="button2">Remove Goal</button>
+                <h2>{setGoals}</h2>
+                
 
 
 
             </div>
-        
+
         )
     }
 }
