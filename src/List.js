@@ -24,6 +24,12 @@ export default class List extends Component {
         ))
     }
 
+    deleteGoal(index) {
+        axios.delete(`/api/goals/${index}`).then(response =>
+        this.setState({ goals: response.data}))
+        
+    }
+
     componentDidMount(){
         axios.get('/api/goals')
         .then(response => {
@@ -46,7 +52,7 @@ export default class List extends Component {
 
 
                 <button className="button1" onClick={() => this.submitGoal()}>Submit</button>
-                <button className="button2">Remove Goal</button>
+                <button className="button2" onClick={() => this.deleteGoal()}>Remove Goal</button>
                 <h2>{setGoals}</h2>
                 
 

@@ -21,30 +21,32 @@ h2 {
   box-sizing: border-box;
   border: 2px solid #ccc;
   border-radius: 4px;
-  background-color:aqua;
+  background-color: #ECE63D;
   resize: none;
   text-align: center;
   color: black;
   font-size: 25px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 input{
   border: 2px solid cornflowerblue;
   width: 25%;
-  height: 10px;
+  height: 40px;
   padding: 12px 20px;
   box-sizing: border-box;
 }
 
 .button1 {
   background-color: #008CBA;
-  padding: 3px 10px;
+  padding: 10px 15px;
   border-radius: 4px;
 }
 
 .button2 {
   background-color: #008CBA;
-  padding: 3px 10px;
+  padding: 10px 15px;
   border-radius: 4px;
 
 }

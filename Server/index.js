@@ -8,7 +8,7 @@ app.use(bodyParser.json())
 
 app.get('/api/goals', gc.read)
 app.post('/api/goals', gc.create)
-app.delete('/api/goals', gc.delete)
+app.delete('/api/goals/:id', gc.delete)
 
 const port = 3005;
 app.listen( port, () => {console.log(`Server Listening on Port ${port}`) } )

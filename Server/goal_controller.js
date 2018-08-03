@@ -1,5 +1,5 @@
-let goals = ['Connect the front end to the back end']
-
+let goals = ['This is the first goal', 'this is the second goal']
+let id = [0]
 
 module.exports = {
     read: (req, res) => {
@@ -12,6 +12,8 @@ module.exports = {
     },
 
     delete: (req, res) => {
+        let index = goals.findIndex(goal => goal.id == id)
+        goals.splice(index, 1);
         res.status(200).send(goals)
     }
 
