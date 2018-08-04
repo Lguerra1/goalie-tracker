@@ -18,7 +18,7 @@ export default class List extends Component {
         })
     }
 
-    submitGoal() {
+    submitGoal() { 
         axios.post('/api/goals', { goal: this.state.input })
             .then(response => this.setState({ goals: response.data }
             ))
@@ -31,10 +31,11 @@ export default class List extends Component {
     }
 
     updateGoal(index) {
-        axios.put(`/api/goals/${index}`)
+        axios.put(`/api/goals/${index}`, {newGoal: this.state.input})
             .then(response => {
                 console.log(response)
-                this.setState({ goals: response.data })
+                this.setState({ input: response.data  })
+                
             }
             )
     }
@@ -52,26 +53,27 @@ export default class List extends Component {
                 <div key={index}>{goal}</div>
             )
         })
+        
         return (
             <div>
-
+                
+                <button className="button1" onClick={() => this.submitGoal()}>Submit</button>
+                <button className="button3" onClick={() => this.updateGoal()}>Update Goal</button>
+                <button className="button2" onClick={() => this.deleteGoal()}>Remove Goal</button>
                 <input value={this.state.input}
                     placeholder="Whats your goal?"
                     onChange={(e) => this.handleChange(e.target.value)} />
-
-
-                <button className="button1" onClick={() => this.submitGoal()}>Submit</button>
+             
+                <h2>{setGoals}</h2>
                 
-                <button className="button2" onClick={() => this.deleteGoal()}>Remove Goal</button>
-                <div>
+
+
+
+                
                    
-                <div><p> </p></div>
             
                 
-                <button className="button3" onClick={() => this.updateGoal()}>Update Goal</button>
-                </div>
 
-                <h2>{setGoals}</h2>
 
 
 
