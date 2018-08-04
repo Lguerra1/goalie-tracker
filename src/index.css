@@ -15,19 +15,18 @@ h1 {
 }
 
 h2 {
-  width: 75%;
-  height: 100px;
-  padding: 12px 20px;
-  box-sizing: border-box;
-  border: 2px solid #ccc;
-  border-radius: 4px;
-  background-color: #ECE63D;
-  resize: none;
-  text-align: center;
-  color: black;
-  font-size: 25px;
-  margin-left: auto;
-  margin-right: auto;
+  
+ background: url(http://i.stack.imgur.com/ynxjD.png) repeat-y;
+ width: 50%;
+ height: 200px;
+ font: normal 20px verdana;
+ line-height: 25px;
+ padding: 2px 10px;
+ border: solid 1px #ddd;
+ margin-left: auto;
+ margin-right: auto;
+ color: black
+  
 }
 
 input{
@@ -42,11 +41,37 @@ input{
   background-color: #008CBA;
   padding: 10px 15px;
   border-radius: 4px;
+  font-weight: bolder;
 }
 
 .button2 {
   background-color: #008CBA;
   padding: 10px 15px;
   border-radius: 4px;
+  font-weight: bolder;
 
 }
+
+.button3 {
+  background-color: #008CBA;
+  padding: 10px 15px;
+  border-radius: 4px;
+  font-weight: bolder; 
+}
+
+
+
+
+/* width: 75%;
+  height: 100px;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: #ECE63D;
+  resize: none;
+  text-align: center;
+  color: black;
+  font-size: 25px;
+  margin-left: auto;
+  margin-right: auto; */

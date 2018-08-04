@@ -19,28 +19,37 @@ export default class List extends Component {
     }
 
     submitGoal() {
-        axios.post('/api/goals', {goal: this.state.input })
-        .then(response => this.setState({ goals: response.data}
-        ))
+        axios.post('/api/goals', { goal: this.state.input })
+            .then(response => this.setState({ goals: response.data }
+            ))
     }
 
     deleteGoal(index) {
         axios.delete(`/api/goals/${index}`).then(response =>
-        this.setState({ goals: response.data}))
-        
+            this.setState({ goals: response.data }))
+
     }
 
-    componentDidMount(){
+    updateGoal(index) {
+        axios.put(`/api/goals/${index}`)
+            .then(response => {
+                console.log(response)
+                this.setState({ goals: response.data })
+            }
+            )
+    }
+
+    componentDidMount() {
         axios.get('/api/goals')
-        .then(response => {
-            this.setState({ goals: response.data })
-        })
+            .then(response => {
+                this.setState({ goals: response.data })
+            })
     }
 
     render() {
         let setGoals = this.state.goals.map((goal, index) => {
             return (
-                <h2 key={index}>{goal}</h2>
+                <div key={index}>{goal}</div>
             )
         })
         return (
@@ -52,9 +61,18 @@ export default class List extends Component {
 
 
                 <button className="button1" onClick={() => this.submitGoal()}>Submit</button>
-                <button className="button2" onClick={() => this.deleteGoal()}>Remove Goal</button>
-                <h2>{setGoals}</h2>
                 
+                <button className="button2" onClick={() => this.deleteGoal()}>Remove Goal</button>
+                <div>
+                   
+                <div><p> </p></div>
+            
+                
+                <button className="button3" onClick={() => this.updateGoal()}>Update Goal</button>
+                </div>
+
+                <h2>{setGoals}</h2>
+
 
 
 

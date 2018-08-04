@@ -1,4 +1,4 @@
-let goals = ['This is the first goal', 'this is the second goal']
+let goals = []
 let id = [0]
 
 module.exports = {
@@ -6,7 +6,7 @@ module.exports = {
         res.status(200).send(goals)
     },
 
-    create: (req, res) => {        
+    create: (req, res) => {
         goals.push(req.body.goal)
         res.status(200).send(goals)
     },
@@ -15,7 +15,22 @@ module.exports = {
         let index = goals.findIndex(goal => goal.id == id)
         goals.splice(index, 1);
         res.status(200).send(goals)
-    }
+    },
 
-    
+    update: (req, res) => {
+        let newGoal = goals.map((val, i) => {
+            if (i == req.params.id) {
+                return { goal: req.body.goal }
+            } else {
+                return val;
+            }
+        })
+        goals = [...newGoal]
+        res.status(200).send(goals)
+    }
 }
+
+
+
+
+
