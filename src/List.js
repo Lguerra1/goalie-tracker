@@ -31,10 +31,10 @@ export default class List extends Component {
     }
 
     updateGoal(index) {
-        axios.put(`/api/goals/${index}`)
+        axios.put(`/api/goals/${index}`, {name: this.state.input})
             .then(response => {
                 console.log(response)
-                this.setState({ goals: response.data })
+                this.setState({ goals: [...response.data] })
             }
             )
     }
@@ -54,28 +54,15 @@ export default class List extends Component {
         })
         return (
             <div>
-
+                <button className="button1" onClick={() => this.submitGoal()}>Submit</button>
+                <button className="button2" onClick={() => this.deleteGoal()}>Remove Goal</button>
+                <button className="button3" onClick={() => this.updateGoal()}>Update Goal</button>
                 <input value={this.state.input}
                     placeholder="Whats your goal?"
                     onChange={(e) => this.handleChange(e.target.value)} />
 
 
-                <button className="button1" onClick={() => this.submitGoal()}>Submit</button>
-                
-                <button className="button2" onClick={() => this.deleteGoal()}>Remove Goal</button>
-                <div>
-                   
-                <div><p> </p></div>
-            
-                
-                <button className="button3" onClick={() => this.updateGoal()}>Update Goal</button>
-                </div>
-
                 <h2>{setGoals}</h2>
-
-
-
-
             </div>
 
         )
