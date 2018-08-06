@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios';
+import ListItems from './ListItems';
 
 
 export default class List extends Component {
@@ -18,6 +19,13 @@ export default class List extends Component {
         })
     }
 
+    componentDidMount() {
+        axios.get('/api/goals')
+            .then(response => {
+                this.setState({ goals: response.data })
+            })
+    }
+
     submitGoal() {
         axios.post('/api/goals', { goal: this.state.input })
             .then(response => this.setState({ goals: response.data }
@@ -30,39 +38,34 @@ export default class List extends Component {
 
     }
 
-    updateGoal(index) {
-        axios.put(`/api/goals/${index}`, {name: this.state.input})
-            .then(response => {
-                console.log(response)
-                this.setState({ goals: [...response.data] })
-            }
-            )
+    updateGoal(goals) {
+        this.setState({goals})
     }
 
-    componentDidMount() {
-        axios.get('/api/goals')
-            .then(response => {
-                this.setState({ goals: response.data })
-            })
-    }
 
     render() {
         let setGoals = this.state.goals.map((goal, index) => {
             return (
-                <div key={index}>{goal}</div>
+                < ListItems key={index + goal}
+                    goal={goal}
+                    index={index}
+                    updateGoals={this.updateGoal.bind(this)}
+                    deleterGoal={this.deleteGoal.bind(this)}
+                />
             )
         })
+
         return (
             <div>
-                <button className="button1" onClick={() => this.submitGoal()}>Submit</button>
-                <button className="button2" onClick={() => this.deleteGoal()}>Remove Goal</button>
-                <button className="button3" onClick={() => this.updateGoal()}>Update Goal</button>
+                <button className="button1" onClick={() => this.submitGoal()}>Submit</button>               
                 <input value={this.state.input}
                     placeholder="Whats your goal?"
                     onChange={(e) => this.handleChange(e.target.value)} />
 
-
                 <h2>{setGoals}</h2>
+
+               
+
             </div>
 
         )
